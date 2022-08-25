@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {Link} from 'react-router-dom';
 
 export default function TopicCard({ topic, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(topic.topicName);
@@ -26,6 +27,7 @@ export default function TopicCard({ topic, handleDelete, handleEdit }) {
         <button onClick={() => handleDelete(topic.id)}>
           <DeleteIcon id="i" />
         </button>
+        <Link to='/notes' state={{ topic_id: topic.id }}>Study Topic</Link>
       </div>
     </>
   );
