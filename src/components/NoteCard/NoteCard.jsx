@@ -38,8 +38,8 @@ export default function NoteCard({ note, handleDelete, handleEdit }) {
         </button>
     
       <div>
-        {/* <Link to='/topics' state={{ sub_id: subject.id }}>Open Notebook</Link> */}
-        {/* Opne notebook's topic's note fully */}
+        <Link to='/notesdetail' state={{ title: newTitle, content: newContent}}>Open Notes</Link>
+        {/* Open notebook's topic's note fully */}
       </div>
     </div>
   );

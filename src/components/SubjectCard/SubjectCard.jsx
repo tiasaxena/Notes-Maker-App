@@ -27,7 +27,7 @@ export default function SubjectCard({ subject, handleDelete, handleEdit }) {
         <button onClick={() => handleDelete(subject.id)}>
           <DeleteIcon id="i" />
         </button>
-        <Link to='/topics' state={{ sub_id: subject.id }}>Open Notebook</Link>
+        <Link to='/topics' state={{ sub_id: subject.id, currSubject: newTitle }}>Open Notebook</Link>
       </div>
     </div>
   );

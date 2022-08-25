@@ -3,12 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs,  } from "firebase/firestore";
 import { db } from '../../firebase';
 import NoteCard from '../NoteCard/NoteCard';
+import Header from '../Header/Header';
 
 function Notes() {
 
   const location = useLocation();
   const subject_id  = location.state.subject_id;
   const topic_id = location.state.topic_id;
+  const currTopic = location.state.currTopic;
 
   const [ title, setTitle ] = useState("");
   const [ content, setContent ] = useState("");
@@ -57,7 +59,11 @@ function Notes() {
     //     {/* display old notebooks -> link to different notebooks */}
     // </div>
 
-    <div className="notebooks">
+    <>
+      <Header
+        heading = {currTopic}
+      />
+      <div className="notebooks">
       <form onSubmit={handleSubmit}>
         <input
         value={title}
@@ -86,6 +92,7 @@ function Notes() {
       ))}
       
     </div>
+    </>
   )
 }
 

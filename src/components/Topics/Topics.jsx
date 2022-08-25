@@ -3,11 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs } from "firebase/firestore";
 import { db } from '../../firebase';
 import TopicCard from '../TopicCard/TopicCard';
+import Header from '../Header/Header';
 
 function Topics() {
 
   const location = useLocation();
-  const { sub_id } = location.state;
+  const sub_id = location.state.sub_id;
+  const currSubject = location.state.currSubject;
   
   const [ topic, setTopic ] = useState("");
   const [ topicList, setTopicList ] = useState([]);
@@ -59,7 +61,10 @@ function Topics() {
 
   return (
 
-    <div className="notebooks">
+    <>
+      <Header 
+      heading = {currSubject} />
+      <div className="notebooks">
       <form onSubmit={handleSubmit}>
         <input
         value={topic}
@@ -81,6 +86,7 @@ function Topics() {
           />
       ))}
     </div>
+    </>
   )
 }
 

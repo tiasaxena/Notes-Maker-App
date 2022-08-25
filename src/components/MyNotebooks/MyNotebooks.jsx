@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs,  } from "firebase/firestore";
 import { db } from '../../firebase';
 import SubjectCard from '../SubjectCard/SubjectCard';
+import Header from '../Header/Header';
 
 function MyNotebooks() {
 
@@ -68,7 +69,9 @@ function MyNotebooks() {
 
     //     {/* display old notebooks -> link to different notebooks */}
     // </div>
-
+    <>
+      <Header 
+        heading = "My Notebooks"/>
     <div className="notebooks">
       <form onSubmit={handleSubmit}>
         <input
@@ -90,6 +93,7 @@ function MyNotebooks() {
           />
       ))}
     </div>
+    </>
   )
 }
 

@@ -27,7 +27,7 @@ export default function TopicCard({ topic, subject_id, handleDelete, handleEdit 
         <button onClick={() => handleDelete(topic.id)}>
           <DeleteIcon id="i" />
         </button>
-        <Link to='/notes' state={{ subject_id: subject_id, topic_id: topic.id }}>Study Topic</Link>
+        <Link to='/notes' state={{ subject_id: subject_id, topic_id: topic.id, currTopic: newTitle }}>Study Topic</Link>
       </div>
     </>
   );

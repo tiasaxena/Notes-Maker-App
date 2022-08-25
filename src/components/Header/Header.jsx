@@ -1,11 +1,11 @@
 import React from 'react';
 import '../Header/Header.css';
 
-function Header() {
+function Header({heading}) {
   return (
     <>
       <header className="header">
-        <h3 className="header__title">Notes Maker App</h3>
+        <h3 className="header__title">{heading}</h3>
       </header>
     </>
   )
