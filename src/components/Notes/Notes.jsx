@@ -43,7 +43,7 @@ function Notes() {
   }, []);
 
   const handleEdit = async (note, title, content) => {
-    await setDoc(doc(db, "notes", note.id), { title: title, content: content });
+    await setDoc(doc(db, "notes", note.id), { title: title, content: content, subject_id: note.subject_id, topic_id: note.topic_id });
   };
 
   const handleDelete = async (id) => {

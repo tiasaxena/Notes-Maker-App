@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs } from "firebase/firestore";
 import { db } from '../../firebase';
 import TopicCard from '../TopicCard/TopicCard';
 
@@ -42,7 +42,19 @@ function Topics() {
   };
 
   const handleDelete = async (id) => {
+    //delete the topic from database
     await deleteDoc(doc(db, "topics", id));
+
+     //delete related notes from databse
+     const collectionRefNote = collection(db, 'notes');
+     const q_notes = query(collectionRefNote, where("topic_id", "==", id));
+     const snapshot_notes = await getDocs(q_notes);
+ 
+     const results_notes = snapshot_notes.docs.map((doc) => ({...doc.data(), id: doc.id}));
+     results_notes.forEach(async (result) => {
+       const docRef = doc(db, "notes", result.id);
+       await deleteDoc(docRef);
+     });
   };
 
   return (

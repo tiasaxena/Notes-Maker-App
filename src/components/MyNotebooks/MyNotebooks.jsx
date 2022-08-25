@@ -35,16 +35,29 @@ function MyNotebooks() {
   };
 
   const handleDelete = async (id) => {
+    //delete subject name for databse
     await deleteDoc(doc(db, "subjects", id));
 
-    const collectionRef = collection(db, 'topics');
-    const q = query(collectionRef, where("subjectId", "==", id));
-    const snapshot = await getDocs(q);
+    //delete related topics from databse
+    const collectionRefTopic = collection(db, 'topics');
+    const q_topic = query(collectionRefTopic, where("subjectId", "==", id));
+    const snapshot_topic = await getDocs(q_topic);
 
-    const results = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-    console.log(results);
-    results.forEach(async (result) => {
+    const results_topic = snapshot_topic.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    console.log(results_topic);
+    results_topic.forEach(async (result) => {
       const docRef = doc(db, "topics", result.id);
+      await deleteDoc(docRef);
+    });
+
+    //delete related notes from databse
+    const collectionRefNote = collection(db, 'notes');
+    const q_notes = query(collectionRefNote, where("subject_id", "==", id));
+    const snapshot_notes = await getDocs(q_notes);
+
+    const results_notes = snapshot_notes.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    results_notes.forEach(async (result) => {
+      const docRef = doc(db, "notes", result.id);
       await deleteDoc(docRef);
     });
   };
