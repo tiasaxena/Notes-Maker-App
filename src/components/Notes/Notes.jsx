@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs,  } from "firebase/firestore";
+import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../../firebase';
 import NoteCard from '../NoteCard/NoteCard';
 import Header from '../Header/Header';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 function Notes() {
 
@@ -53,33 +56,33 @@ function Notes() {
   };
 
   return (
-    // <div className="notebooks">
-    //     {/* form to create new notebooks */}
-
-    //     {/* display old notebooks -> link to different notebooks */}
-    // </div>
-
     <>
       <Header
         heading = {currTopic}
       />
       <div className="notebooks">
       <form onSubmit={handleSubmit}>
-        <input
-        value={title}
-        type="text" 
-        placeholder='Title' 
-        required
-        onChange={(event) => setTitle(event.target.value)}
+        <TextField
+          id="outlined-password-input"
+          label="Title"
+          value={title}
+          type="text" 
+          placeholder='Title' 
+          required
+          onChange={(event) => setTitle(event.target.value)}
         />
-        <input
-        value={content}
-        type="text" 
-        placeholder='content' 
-        required
-        onChange={(event) => setContent(event.target.value)}
+        <TextField
+          id="outlined-password-input"
+          label="Content"
+          value={content}
+          type="text" 
+          placeholder='content' 
+          required
+          onChange={(event) => setContent(event.target.value)}
         />
-        <button type='submit'>Add</button>
+        <Button type="submit" variant="contained" color="secondary">
+          <AddCircleOutlinedIcon />
+        </Button>
       </form>
 
       {noteList.map( (eachNote) => (

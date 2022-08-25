@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function TopicCard({ topic, subject_id, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(topic.topicName);
@@ -13,22 +15,39 @@ export default function TopicCard({ topic, subject_id, handleDelete, handleEdit 
   };
   return (
     <>
-      <input
-        type="text"
-        value={newTitle}
-        onChange={handleChange}
+      <TextField
+          id="outlined-password-input"
+          type="text"
+          value={newTitle}
+          onChange={handleChange} 
+          required
       />
-      <div>
-        <button
-          onClick={() => handleEdit(topic, newTitle)}
-        >
-          <EditIcon id="i" />
-        </button>
-        <button onClick={() => handleDelete(topic.id)}>
-          <DeleteIcon id="i" />
-        </button>
+      
+      <Button 
+      type="submit" 
+      variant="outlined" 
+      color="secondary" 
+      onClick={() => handleEdit(topic, newTitle)}>
+        <EditIcon id="i" />
+      </Button>
+
+      <Button 
+      type="submit" 
+      variant="contained" 
+      color="secondary" 
+      onClick={() => handleDelete(topic.id)}>
+        <DeleteIcon id="i" />
+      </Button>
+
+      <Button 
+      type="submit" 
+      variant="outlined" 
+      color="secondary" >
         <Link to='/notes' state={{ subject_id: subject_id, topic_id: topic.id, currTopic: newTitle }}>Study Topic</Link>
-      </div>
+      </Button>
+      
+      
+      
     </>
   );
 }

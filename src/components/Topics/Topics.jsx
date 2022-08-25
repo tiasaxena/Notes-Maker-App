@@ -4,6 +4,9 @@ import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, g
 import { db } from '../../firebase';
 import TopicCard from '../TopicCard/TopicCard';
 import Header from '../Header/Header';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 function Topics() {
 
@@ -66,14 +69,19 @@ function Topics() {
       heading = {currSubject} />
       <div className="notebooks">
       <form onSubmit={handleSubmit}>
-        <input
-        value={topic}
-        type="text" 
-        placeholder='topic name' 
-        required
-        onChange={(event) => setTopic(event.target.value)}
+
+        <TextField
+          id="outlined-password-input"
+          label="Topic Name"
+          value={topic}
+          type="text" 
+          placeholder='Topic Name' 
+          required
+          onChange={(event) => setTopic(event.target.value)}
         />
-        <button type='submit'>Submit</button>
+        <Button type="submit" variant="contained" color="secondary">
+          <AddCircleOutlinedIcon/>
+        </Button>
       </form>
 
       {topicList.map( (eachTopic) => ( 

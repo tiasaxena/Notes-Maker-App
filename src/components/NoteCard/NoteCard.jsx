@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function NoteCard({ note, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(note.title);
@@ -18,29 +20,42 @@ export default function NoteCard({ note, handleDelete, handleEdit }) {
 
   return (
     <div>
-      <input
+      <TextField
         type="text"
         value={newTitle}
         onChange={handleChangeTitle}
       />
-      <input
+      <TextField
         type="text"
         value={newContent}
         onChange={handleChangeContent}
       />
-        <button
-          onClick={() => handleEdit(note, newTitle, newContent)}
-        >
-          <EditIcon id="i" />
-        </button>
-        <button onClick={() => handleDelete(note.id)}>
-          <DeleteIcon id="i" />
-        </button>
-    
-      <div>
+        
+      <Button 
+      type="submit"
+      variant="outlined"
+      color="secondary"
+      onClick={() => handleEdit(note, newTitle, newContent)}>
+        <EditIcon id="i" />
+      </Button>
+
+      <Button 
+      type="submit"
+      variant="contained"
+      color="secondary"
+      onClick={() => handleDelete(note.id)}>
+        <DeleteIcon id="i" />
+      </Button>
+
+      <Button 
+      type="submit"
+      variant="outlined"
+      color="secondary"
+      onClick={() => handleDelete(note.id)}>
         <Link to='/notesdetail' state={{ title: newTitle, content: newContent}}>Open Notes</Link>
-        {/* Open notebook's topic's note fully */}
-      </div>
+      </Button>
+    
+      
     </div>
   );
 }

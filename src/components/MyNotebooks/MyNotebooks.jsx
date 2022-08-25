@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs,  } from "firebase/firestore";
+import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs } from "firebase/firestore";
 import { db } from '../../firebase';
 import SubjectCard from '../SubjectCard/SubjectCard';
 import Header from '../Header/Header';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 function MyNotebooks() {
 
@@ -64,26 +67,24 @@ function MyNotebooks() {
   };
 
   return (
-    // <div className="notebooks">
-    //     {/* form to create new notebooks */}
-
-    //     {/* display old notebooks -> link to different notebooks */}
-    // </div>
     <>
-      <Header 
-        heading = "My Notebooks"/>
+    <Header 
+    heading = "MY NOTEBOOKS"/>
     <div className="notebooks">
       <form onSubmit={handleSubmit}>
-        <input
-        value={subject}
-        type="text" 
-        placeholder='subject name' 
-        required
-        onChange={(event) => setSubject(event.target.value)}
+        <TextField
+          id="outlined-password-input"
+          label="Subject Name"
+          value={subject}
+          type="text" 
+          placeholder='subject name' 
+          required
+          onChange={(event) => setSubject(event.target.value)}
         />
-        <button type='submit'>Submit</button>
+        <Button type="submit" variant="contained" color="secondary">
+          <AddCircleOutlinedIcon />
+        </Button>
       </form>
-
       {subjectList.map( (eachSubject) => (
         <SubjectCard
             key={eachSubject.id}

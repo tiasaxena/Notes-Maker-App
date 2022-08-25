@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home/Home'
+import MyNotebooks from './components/MyNotebooks/MyNotebooks';
 import Topics from './components/Topics/Topics';
 import Notes from './components/Notes/Notes';
 import NotesDetail from './components/NotesDetail/NotesDetail'
@@ -14,7 +14,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Home />
+              <MyNotebooks />
             }
           />
            <Route
