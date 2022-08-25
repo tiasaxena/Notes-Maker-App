@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs,  } from "firebase/firestore";
 import { db } from '../../firebase';
 import NoteCard from '../NoteCard/NoteCard';
 
 function Notes() {
+
+  const location = useLocation();
+  const subject_id  = location.state.subject_id;
+  const topic_id = location.state.topic_id;
 
   const [ title, setTitle ] = useState("");
   const [ content, setContent ] = useState("");
@@ -15,8 +20,8 @@ function Notes() {
       await addDoc(collection(db, "notes"), {
         title: title,
         content: content,
-        // subject_id,
-        // topic_id,
+        subject_id: subject_id,
+        topic_id: topic_id,
       });
       setTitle("");
       setContent("");
@@ -28,7 +33,9 @@ function Notes() {
     const unsub = onSnapshot(q, (querySnapshot) => {
       let noteArray = [];
       querySnapshot.forEach((doc) => {
-        noteArray.push({ ...doc.data(), id: doc.id });
+        if(doc.data().subject_id === subject_id && doc.data().topic_id === topic_id) {
+            noteArray.push({ ...doc.data(), id: doc.id });
+        }
       });
       setNoteList(noteArray);
     });

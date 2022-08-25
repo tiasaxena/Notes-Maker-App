@@ -3,7 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from 'react-router-dom';
 
-export default function TopicCard({ topic, handleDelete, handleEdit }) {
+export default function TopicCard({ topic, subject_id, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(topic.topicName);
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ export default function TopicCard({ topic, handleDelete, handleEdit }) {
         <button onClick={() => handleDelete(topic.id)}>
           <DeleteIcon id="i" />
         </button>
-        <Link to='/notes' state={{ topic_id: topic.id }}>Study Topic</Link>
+        <Link to='/notes' state={{ subject_id: subject_id, topic_id: topic.id }}>Study Topic</Link>
       </div>
     </>
   );

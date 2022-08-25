@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../../firebase';
 import TopicCard from '../TopicCard/TopicCard';
@@ -63,6 +63,7 @@ function Topics() {
         <TopicCard
             key={eachTopic.id}
             topic={eachTopic}
+            subject_id = {sub_id}
             handleDelete={handleDelete}
             handleEdit={handleEdit}
           />
