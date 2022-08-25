@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, query, onSnapshot, doc, setDoc, deleteDoc, where, getDocs,  } from "firebase/firestore";
 import { db } from '../../firebase';
 import SubjectCard from '../SubjectCard/SubjectCard';
 
@@ -37,18 +37,16 @@ function MyNotebooks() {
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "subjects", id));
 
-    //delete the related topics
-    const q1 = query(collection(db, "topics"));
-    const delTopic = onSnapshot(q1, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.data().topicName);
-        if(doc.data().subjectId === id) {
-          console.log('topicsId', doc.id);
-          deleteDoc(doc(db, "topics", doc.id));
-        }
-      });
+    const collectionRef = collection(db, 'topics');
+    const q = query(collectionRef, where("subjectId", "==", id));
+    const snapshot = await getDocs(q);
+
+    const results = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    console.log(results);
+    results.forEach(async (result) => {
+      const docRef = doc(db, "topics", result.id);
+      await deleteDoc(docRef);
     });
-    return () => delTopic();
   };
 
   return (
