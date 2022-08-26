@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 function NotesDetail() {
   
@@ -13,19 +15,23 @@ function NotesDetail() {
       <Header
       heading = {title}
       />
+      <CardContent
+        style={{ 
+          backgroundColor:"rgb(214, 180, 214)",
+          borderRadius:"2rem",
+          width: "90%",
+          padding:"2rem",
+          margin:"auto",
+        marginTop: "4rem",
+        }}>
+        <Typography> 
+          
+         
+          value={content}
+        </Typography>
+      
 
-      <div
-      style={{
-      backgroundColor:"rgb(214, 180, 214)",
-      borderRadius:"2rem",
-      color: "whitesmoke",
-      width: "90%",
-      padding:"2rem",
-      margin:"auto",
-      marginTop: "4rem",
-      }}>
-        <p>{content}</p>
-      </div>      
+      </CardContent>
     </div>
   )
 }

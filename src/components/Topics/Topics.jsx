@@ -64,7 +64,7 @@ function Topics() {
 
   return (
 
-    <>
+    <div>
       <Header 
       heading = {currSubject} />
       <div className="notebooks">
@@ -103,7 +103,7 @@ function Topics() {
           />
       ))}
     </div>
-    </>
+    </div>
   )
 }
 
