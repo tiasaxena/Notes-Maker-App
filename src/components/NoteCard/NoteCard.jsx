@@ -4,6 +4,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 
 export default function NoteCard({ note, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(note.title);
@@ -20,42 +23,63 @@ export default function NoteCard({ note, handleDelete, handleEdit }) {
 
   return (
     <div>
-      <TextField
-        type="text"
-        value={newTitle}
-        onChange={handleChangeTitle}
-      />
-      <TextField
-        type="text"
-        value={newContent}
-        onChange={handleChangeContent}
-      />
-        
-      <Button 
-      type="submit"
-      variant="outlined"
-      color="secondary"
-      onClick={() => handleEdit(note, newTitle, newContent)}>
-        <EditIcon id="i" />
-      </Button>
+        <CardContent
+        style={{display: "flex", backgroundColor:"rgb(214, 180, 214)", width:"30%", borderRadius:"2rem"}}>
 
-      <Button 
-      type="submit"
-      variant="contained"
-      color="secondary"
-      onClick={() => handleDelete(note.id)}>
-        <DeleteIcon id="i" />
-      </Button>
+          <div>
+          <Typography>
+            <TextField
+            type="text"
+            color="secondary"
+            value={newTitle}
+            onChange={handleChangeTitle}
+            />
+          {/* </Typography>
+          <Typography> */}
+            <TextField
+            type="text"
+            color="secondary"
+            value={newContent}
+            onChange={handleChangeContent}/>
+          </Typography>
+          </div>
 
-      <Button 
-      type="submit"
-      variant="outlined"
-      color="secondary"
-      onClick={() => handleDelete(note.id)}>
-        <Link to='/notesdetail' state={{ title: newTitle, content: newContent}}>Open Notes</Link>
-      </Button>
-    
-      
+          <div
+          style={{display: "flex", flexDirection: "column"}}>
+          <Button 
+          type="submit"
+          variant="outlined"
+          color="secondary"
+          style={{height: "38px"}}
+          onClick={() => handleEdit(note, newTitle, newContent)}>
+            <EditIcon id="i" />
+          </Button>
+
+          <Button 
+          type="submit"
+          variant="contained"
+          color="secondary"
+          style={{height: "38px"}}
+          onClick={() => handleDelete(note.id)}>
+            <DeleteIcon id="i" />
+          </Button>
+
+          <Button 
+          type="submit"
+          variant="outlined"
+          color="secondary"
+          style={{height: "38px"}}
+          onClick={() => handleDelete(note.id)}>
+            <Link 
+            to='/notesdetail' 
+            style={{textDecoration: "none", color: 'rgb(44, 43, 43)'}}
+            state={{ title: newTitle, content: newContent}}>
+            <FileOpenIcon style={{color: "#883997", marginTop: "8px"}}/>
+            </Link>
+          </Button>
+          </div>
+
+        </CardContent>
     </div>
   );
 }

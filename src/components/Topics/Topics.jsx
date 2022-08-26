@@ -68,7 +68,11 @@ function Topics() {
       <Header 
       heading = {currSubject} />
       <div className="notebooks">
-      <form onSubmit={handleSubmit}>
+      <form
+      style={{textAlign: "center", 
+      marginTop: "4.5rem",
+      marginBottom: "5rem"}} 
+      onSubmit={handleSubmit}>
 
         <TextField
           id="outlined-password-input"
@@ -77,9 +81,14 @@ function Topics() {
           type="text" 
           placeholder='Topic Name' 
           required
+          color='secondary'
           onChange={(event) => setTopic(event.target.value)}
         />
-        <Button type="submit" variant="contained" color="secondary">
+        <Button 
+        type="submit" 
+        variant="contained" 
+        color="secondary"
+        style={{marginLeft: "1rem", marginTop: "1rem"}}>
           <AddCircleOutlinedIcon/>
         </Button>
       </form>

@@ -61,13 +61,16 @@ function Notes() {
         heading = {currTopic}
       />
       <div className="notebooks">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+      style={{textAlign: "center", 
+      marginTop: "5rem"}} >
         <TextField
           id="outlined-password-input"
           label="Title"
           value={title}
           type="text" 
-          placeholder='Title' 
+          placeholder='Title'
+          color='secondary'
           required
           onChange={(event) => setTitle(event.target.value)}
         />
@@ -76,11 +79,17 @@ function Notes() {
           label="Content"
           value={content}
           type="text" 
+          color='secondary'
           placeholder='content' 
           required
+          style={{marginLeft: "1rem"}}
           onChange={(event) => setContent(event.target.value)}
         />
-        <Button type="submit" variant="contained" color="secondary">
+        <Button 
+        style={{marginLeft: "1rem", marginTop: "1rem"}}
+        type="submit" 
+        variant="contained" 
+        color="secondary">
           <AddCircleOutlinedIcon />
         </Button>
       </form>

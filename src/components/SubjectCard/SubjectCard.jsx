@@ -4,6 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 
 export default function SubjectCard({ subject, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(subject.subjectName);
@@ -14,7 +15,10 @@ export default function SubjectCard({ subject, handleDelete, handleEdit }) {
     
   };
   return (
-    <div className="todo">
+    <div 
+    style={{textAlign: "center"}}>
+      <div
+      style={{marginBottom: "1rem"}}>
       <TextField
           id="outlined-password-input"
           type="text"
@@ -27,7 +31,8 @@ export default function SubjectCard({ subject, handleDelete, handleEdit }) {
       <Button 
       type="submit" 
       variant="outlined" 
-      color="secondary" 
+      color="secondary"
+      style={{marginLeft: "1rem", marginTop: "1rem"}}
       onClick={() => handleEdit(subject, newTitle)}>
         <EditIcon id="i" />
       </Button>
@@ -36,6 +41,7 @@ export default function SubjectCard({ subject, handleDelete, handleEdit }) {
       type="submit" 
       variant="contained" 
       color="secondary" 
+      style={{marginLeft: "1rem", marginTop: "1rem"}}
       onClick={() => handleDelete(subject.id)}>
         <DeleteIcon id="i" />
       </Button>
@@ -43,11 +49,16 @@ export default function SubjectCard({ subject, handleDelete, handleEdit }) {
       <Button 
       type="submit" 
       variant="outlined" 
+      style={{marginLeft: "1rem", marginTop: "1rem", height: "38px"}}
       color="secondary" >
-        <Link to='/topics' state={{ sub_id: subject.id, currSubject: newTitle }}>Open Notebook</Link>
+        <Link 
+        to='/topics'
+        style={{textDecoration: "none", color: 'rgb(44, 43, 43)'}}
+        state={{ sub_id: subject.id, currSubject: newTitle }}>
+          <FileOpenIcon style={{color: "#883997", marginTop: "8px"}}/>
+        </Link>
       </Button>
-
-      {/* <Link to='/topics' state={{ sub_id: subject.id, currSubject: newTitle }}>Open Notebook</Link> */}
+      </div>
     </div>
   );
 }

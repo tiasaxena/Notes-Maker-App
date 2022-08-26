@@ -71,27 +71,36 @@ function MyNotebooks() {
     <Header 
     heading = "MY NOTEBOOKS"/>
     <div className="notebooks">
-      <form onSubmit={handleSubmit}>
+      <form 
+      style={{textAlign: "center", 
+      marginTop: "4.5rem",
+      marginBottom: "5rem"}} 
+      onSubmit={handleSubmit} 
+      className="notebook__form">
         <TextField
           id="outlined-password-input"
           label="Subject Name"
-          value={subject}
-          type="text" 
-          placeholder='subject name' 
+          value={subject} type="text" 
+          placeholder='Subject Name' 
           required
-          onChange={(event) => setSubject(event.target.value)}
+          color='secondary'
+          onChange={(event) => setSubject(event.target.value)} 
         />
-        <Button type="submit" variant="contained" color="secondary">
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          style={{marginLeft: "1rem", marginTop: "1rem"}}>
           <AddCircleOutlinedIcon />
         </Button>
       </form>
       {subjectList.map( (eachSubject) => (
         <SubjectCard
-            key={eachSubject.id}
-            subject={eachSubject}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
+          key={eachSubject.id}
+          subject={eachSubject}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+        />
       ))}
     </div>
     </>

@@ -4,6 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 
 export default function TopicCard({ topic, subject_id, handleDelete, handleEdit }) {
   const [newTitle, setNewTitle] = useState(topic.topicName);
@@ -14,7 +15,10 @@ export default function TopicCard({ topic, subject_id, handleDelete, handleEdit 
     
   };
   return (
-    <>
+    <div 
+    style={{textAlign: "center"}}>
+      <div
+      style={{marginBottom: "1rem"}}>
       <TextField
           id="outlined-password-input"
           type="text"
@@ -27,6 +31,7 @@ export default function TopicCard({ topic, subject_id, handleDelete, handleEdit 
       type="submit" 
       variant="outlined" 
       color="secondary" 
+      style={{marginLeft: "1rem", marginTop: "1rem"}}
       onClick={() => handleEdit(topic, newTitle)}>
         <EditIcon id="i" />
       </Button>
@@ -35,6 +40,7 @@ export default function TopicCard({ topic, subject_id, handleDelete, handleEdit 
       type="submit" 
       variant="contained" 
       color="secondary" 
+      style={{marginLeft: "1rem", marginTop: "1rem"}}
       onClick={() => handleDelete(topic.id)}>
         <DeleteIcon id="i" />
       </Button>
@@ -42,12 +48,15 @@ export default function TopicCard({ topic, subject_id, handleDelete, handleEdit 
       <Button 
       type="submit" 
       variant="outlined" 
+      style={{marginLeft: "1rem", marginTop: "1rem", height: "38px"}}
       color="secondary" >
-        <Link to='/notes' state={{ subject_id: subject_id, topic_id: topic.id, currTopic: newTitle }}>Study Topic</Link>
+        <Link to='/notes' 
+        style={{textDecoration: "none", color: 'rgb(44, 43, 43)'}}
+        state={{ subject_id: subject_id, topic_id: topic.id, currTopic: newTitle }}>
+        <FileOpenIcon style={{color: "#883997", marginTop: "8px"}}/>
+        </Link>
       </Button>
-      
-      
-      
-    </>
+      </div>
+    </div>
   );
 }
