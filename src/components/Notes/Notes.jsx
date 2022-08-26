@@ -63,7 +63,9 @@ function Notes() {
       <div className="notebooks">
       <form onSubmit={handleSubmit}
       style={{textAlign: "center", 
-      marginTop: "5rem"}} >
+      marginTop: "5rem",
+      marginBottom: "2rem"
+      }} >
         <TextField
           id="outlined-password-input"
           label="Title"
@@ -82,6 +84,7 @@ function Notes() {
           color='secondary'
           placeholder='content' 
           required
+          multiline
           style={{marginLeft: "1rem"}}
           onChange={(event) => setContent(event.target.value)}
         />

@@ -22,64 +22,73 @@ export default function NoteCard({ note, handleDelete, handleEdit }) {
   };
 
   return (
-    <div>
-        <CardContent
-        style={{display: "flex", backgroundColor:"rgb(214, 180, 214)", width:"30%", borderRadius:"2rem"}}>
-
-          <div>
-          <Typography>
-            <TextField
-            type="text"
-            color="secondary"
-            value={newTitle}
-            onChange={handleChangeTitle}
-            />
-          {/* </Typography>
-          <Typography> */}
-            <TextField
-            type="text"
-            color="secondary"
-            value={newContent}
-            onChange={handleChangeContent}/>
-          </Typography>
-          </div>
-
-          <div
-          style={{display: "flex", flexDirection: "column"}}>
-          <Button 
-          type="submit"
-          variant="outlined"
+    <div
+    style={{
+      width:"100%",
+      margin:"0 35%",
+    }}>
+      <CardContent
+        style={{ 
+        display: "flex", 
+        backgroundColor:"rgb(214, 180, 214)", 
+        width:"30%", 
+        borderRadius:"2rem", 
+        marginBottom: "2rem",
+        padding:"3rem"
+        }}>
+        <div>
+        <Typography>
+          <TextField
+          type="text"
           color="secondary"
-          style={{height: "38px"}}
-          onClick={() => handleEdit(note, newTitle, newContent)}>
-            <EditIcon id="i" />
+          value={newTitle}
+          onChange={handleChangeTitle}
+          style={{marginBottom:'1rem'}}
+          />
+        {/* </Typography>
+        <Typography> */}
+          <TextField
+          type="text"
+          color="secondary"
+          value={newContent}
+          onChange={handleChangeContent}/>
+        </Typography>
+        </div>
+
+        <div
+        style={{display: "flex", flexDirection: "column"}}>
+          <Button 
+        type="submit"
+        variant="outlined"
+        color="secondary"
+        style={{height: "38px", marginBottom:'0.5rem'}}
+        onClick={() => handleEdit(note, newTitle, newContent)}>
+          <EditIcon id="i" />
           </Button>
 
           <Button 
-          type="submit"
-          variant="contained"
-          color="secondary"
-          style={{height: "38px"}}
-          onClick={() => handleDelete(note.id)}>
-            <DeleteIcon id="i" />
+        type="submit"
+        variant="contained"
+        color="secondary"
+        style={{height: "38px", marginBottom:'0.5rem'}}
+        onClick={() => handleDelete(note.id)}>
+          <DeleteIcon id="i" />
           </Button>
 
-          <Button 
-          type="submit"
-          variant="outlined"
-          color="secondary"
-          style={{height: "38px"}}
-          onClick={() => handleDelete(note.id)}>
-            <Link 
-            to='/notesdetail' 
-            style={{textDecoration: "none", color: 'rgb(44, 43, 43)'}}
-            state={{ title: newTitle, content: newContent}}>
-            <FileOpenIcon style={{color: "#883997", marginTop: "8px"}}/>
-            </Link>
+          <Button
+        type="submit"
+        variant="outlined"
+        color="secondary"
+        style={{height: "38px"}}>
+          <Link 
+          to='/notesdetail' 
+          style={{textDecoration: "none", color: 'rgb(44, 43, 43)'}}
+          state={{ title: newTitle, content: newContent}}>
+          <FileOpenIcon style={{color: "#883997", marginTop: "8px"}}/>
+          </Link>
           </Button>
-          </div>
-
-        </CardContent>
+        </div>
+      </CardContent>
     </div>
   );
 }
