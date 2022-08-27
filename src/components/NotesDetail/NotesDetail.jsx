@@ -24,10 +24,8 @@ function NotesDetail() {
           margin:"auto",
         marginTop: "4rem",
         }}>
-        <Typography> 
-          
-         
-          value={content}
+        <Typography>
+          {content}
         </Typography>
       
 
